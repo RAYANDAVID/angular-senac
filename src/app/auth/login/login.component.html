@@ -1,0 +1,47 @@
+<div class="login-container d-flex justify-content-center align-items-center">
+  <div class="login-card card p-4 shadow">
+    <h2 class="card-title text-center mb-4">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="username" class="form-label">Usuário</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': username?.invalid && (username?.dirty || username?.touched) }"
+        />
+        <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="invalid-feedback">
+          <div *ngIf="username?.errors?.['required']">Usuário é obrigatório.</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': password?.invalid && (password?.dirty || password?.touched) }"
+        />
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="invalid-feedback">
+          <div *ngIf="password?.errors?.['required']">Senha é obrigatória.</div>
+          <div *ngIf="password?.errors?.['minlength']">A senha deve ter pelo menos 6 caracteres.</div>
+        </div>
+      </div>
+
+      <div *ngIf="loginError" class="alert alert-danger mt-3">
+        {{ loginError }}
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary" [disabled]="isLoading || loginForm.invalid">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span *ngIf="!isLoading">Entrar</span>
+        </button>
+      </div>
+
+      </form>
+  </div>
+</div>

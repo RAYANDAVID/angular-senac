@@ -1,0 +1,17 @@
+.login-container {
+  min-height: calc(100vh - 56px); 
+  padding: 20px;
+  background-color: #f4f7f6; 
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+
+.invalid-feedback {
+  display: block;
+}
