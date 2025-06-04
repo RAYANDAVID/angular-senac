@@ -19,7 +19,7 @@ export const routes: AppSsrRoute[] = [
   },
   {
     path: 'usuario',
-  component: UsuarioListComponent, // ou loadComponent
+  component: UsuarioListComponent, 
   canActivate: [authGuard],
   },
   {

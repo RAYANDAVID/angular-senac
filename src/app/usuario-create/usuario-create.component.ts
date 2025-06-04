@@ -1,14 +1,13 @@
-// src/app/usuario-create/usuario-create.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { UsuarioService } from '../services/usuario.service'; // Não usaremos mais este diretamente para registro público
-import { AuthService } from '../services/auth.service'; // Importe o AuthService
+import { AuthService } from '../services/auth.service'; 
 import { Usuario } from '../usuario.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-usuario-create', // Pode querer mudar o nome/seletor se virar um componente de registro
+  selector: 'app-usuario-create', 
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './usuario-create.component.html',
@@ -20,22 +19,21 @@ export class UsuarioCreateComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    private authService: AuthService, // Use AuthService
+    private authService: AuthService, 
     private router: Router
   ) { }
 
   ngOnInit(): void {}
 
-  saveUsuario(): void { // Ou renomeie para registerUsuario()
+  saveUsuario(): void { 
     this.registrationError = null;
     this.isLoading = true;
     this.authService.register(this.usuario).subscribe({
       next: (data) => {
         this.isLoading = false;
         console.log('Registro bem-sucedido:', data);
-        // Redireciona para o login após o registro bem-sucedido
         this.router.navigate(['/login']);
-        // Opcional: exibir uma mensagem de sucesso antes de redirecionar
+        
       },
       error: (err) => {
         this.isLoading = false;
@@ -47,6 +45,6 @@ export class UsuarioCreateComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.usuario);
-    this.saveUsuario(); // Ou registerUsuario()
+    this.saveUsuario(); 
   }
 }
